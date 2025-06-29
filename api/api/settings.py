@@ -36,7 +36,10 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'cloudinary_storage',
     'django.contrib.staticfiles',
+    'cloudinary',
+    'rest_framework',
     'users'
 ]
 
@@ -66,6 +69,29 @@ TEMPLATES = [
         },
     },
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
+
+AUTH_USER_MODEL = 'users.CustomUser'
+
+STORAGES = {
+    "default": {
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "cloudinary_storage.storage.StaticHashedCloudinaryStorage",
+    }
+}
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dqcp7ksis',
+    'API_KEY': '539374793531249',
+    'API_SECRET': '1UE7mPDyYzsPFkm0V_rXwug2A_0',
+}
 
 WSGI_APPLICATION = 'api.wsgi.application'
 
